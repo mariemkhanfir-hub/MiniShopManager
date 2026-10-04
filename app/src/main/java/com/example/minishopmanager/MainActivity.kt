@@ -1,47 +1,31 @@
 package com.example.minishopmanager
-
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.minishopmanager.ui.theme.MiniShopManagerTheme
-
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            MiniShopManagerTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+
+        setContentView(R.layout.activity_main)
+
+        val btnNext = findViewById<Button>(R.id.btnNext)
+
+        btnNext.setOnClickListener {
+
+            Toast.makeText(
+                this,
+                "Bonjour Maryam Khanfir !",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MiniShopManagerTheme {
-        Greeting("Android")
+        Log.d("LIFECYCLE", "onCreate appelé")
     }
 }
